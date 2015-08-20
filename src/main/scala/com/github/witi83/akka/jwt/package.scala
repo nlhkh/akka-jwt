@@ -1,4 +1,4 @@
-package com.github.kikuomax.spray
+package com.github.witi83.akka
 
 /**
  * Provides utilities for signing and verification by the JSON Web Token (JWT).

@@ -1,18 +1,20 @@
-organization := "com.github.kikuomax"
+name := "akka-jwt"
+organization := "com.github.witi83"
+version := "0.1"
+scalaVersion := "2.11.7"
 
-name         := "spray-jwt"
+scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature", "-target:jvm-1.8")
+scalacOptions ++= Seq("-Yclosure-elim", "-Yinline", "-Yinline-warnings", "-Xfatal-warnings")
 
-version      := "0.0.1"
+libraryDependencies ++= {
+  val akkaStreamV = "1.0"
 
-crossScalaVersions := Seq("2.10.4", "2.11.4")
-
-scalacOptions := Seq("-unchecked", "-feature", "-deprecation", "-encoding", "utf8")
-
-libraryDependencies ++= Seq(
-  "io.spray"          %% "spray-routing"   % "1.3.2",
-  "com.typesafe.akka" %% "akka-actor"      % "2.3.8",
-  "com.nimbusds"      %  "nimbus-jose-jwt" % "3.5"
-)
+  Seq(
+    "com.typesafe.akka" %% "akka-http-core-experimental" % akkaStreamV,
+    "com.typesafe.akka" %% "akka-http-experimental" % akkaStreamV,
+    "com.nimbusds" % "nimbus-jose-jwt" % "3.10"
+  )
+}
 
 publishMavenStyle := true
 
@@ -21,25 +23,30 @@ publishTo := {
   if (isSnapshot.value)
     Some("snapshots" at prefix + "content/repositories/snapshots")
   else
-    Some("releases" at prefix +"service/local/staging/deploy/maven2")
+    Some("releases" at prefix + "service/local/staging/deploy/maven2")
 }
 
 publishArtifact in Test := false
 
 licenses := Seq("MIT License" -> url("http://opensource.org/licenses/MIT"))
 
-homepage := Some(url("https://github.com/kikuomax/spray-jwt"))
+homepage := Some(url("https://github.com/witi83/akka-jwt"))
 
 pomExtra := (
   <scm>
-    <url>https://github.com/kikuomax/spray-jwt.git</url>
-    <connection>scm:git:https://github.com/kikuomax/spray-jwt.git</connection>
+    <url>https://github.com/witi83/akka-jwt.git</url>
+    <connection>scm:git:https://github.com/witi83/akka-jwt.git</connection>
   </scm>
-  <developers>
-    <developer>
-      <id>kikuomax</id>
-      <name>Kikuo Emoto</name>
-      <url>https://github.com/kikuomax</url>
-    </developer>
-  </developers>
-)
+    <developers>
+      <developer>
+        <id>kikuomax</id>
+        <name>Kikuo Emoto</name>
+        <url>https://github.com/kikuomax</url>
+      </developer>
+      <developer>
+        <id>witi83</id>
+        <name>Witold Czaplewski</name>
+        <url>https://github.com/witi83</url>
+      </developer>
+    </developers>
+  )
