@@ -1,4 +1,4 @@
-*spray-jwt* is a set of utilities for [spray.io](http://spray.io), which perform signing and verification of a JSON Web Token (JWT).
+*akka-jwt* (based in [spray-jwt](https://github.com/kikuomax/spray-jwt)) is a set of utilities for [akka-http](http://doc.akka.io/docs/akka-stream-and-http-experimental/current/scala/http/), which perform signing and verification of a JSON Web Token (JWT).
 
 Getting Started
 ===============
@@ -6,21 +6,13 @@ Getting Started
 Add the following dependency to your `build.sbt`,
 
 ```
-libraryDependencies += "com.github.kikuomax" %% "spray-jwt" % "0.0.1"
-```
-
-Binaries for Scala 2.10.x and 2.11.x are provided.
-
-If you are using [shapeless 2](https://github.com/milessabin/shapeless); i.e., `spray-routing-shapeless2`, please try the following,
-
-```
-libraryDependencies += "com.github.kikuomax" %% "spray-jwt-shapeless2" % "0.0.1"
+libraryDependencies += "com.github.witi83" %% "akka-jwt" % "0.1"
 ```
 
 Example
 =======
 
-Please refer to [ExampleService](src/test/scala/com/github/kikuomax/spray/jwt/ExampleService.scala).
+Please refer to [ExampleService](src/test/scala/com/github/witi83/akka/jwt/ExampleService.scala).
 
 JWT Library
 ===========
