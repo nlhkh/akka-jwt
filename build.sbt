@@ -16,19 +16,11 @@ libraryDependencies ++= {
   )
 }
 
-publishMavenStyle := true
-
-publishTo := {
-  val prefix = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at prefix + "content/repositories/snapshots")
-  else
-    Some("releases" at prefix + "service/local/staging/deploy/maven2")
-}
+publishMavenStyle := false
 
 publishArtifact in Test := false
 
-licenses := Seq("MIT License" -> url("http://opensource.org/licenses/MIT"))
+licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT"))
 
 homepage := Some(url("https://github.com/witi83/akka-jwt"))
 
@@ -50,3 +42,5 @@ pomExtra := (
       </developer>
     </developers>
   )
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
