@@ -21,15 +21,14 @@ trait JwtDirectives {
   import akka.http.scaladsl.server.Directives._
 
   /**
-   * A `UserPassAuthenticator` which returns a JWS object if a given pair of
-   * a user and a password is authenticated.
+   * An `AsyncAuthenticator` which returns a JWS object.
    *
    * Useful if combined with `BasicAuth` and an `authenticate` directive.
    * An inner route of an `authenticate` directive will receive a JWS object
    * (`JWSObject`) built by `claimBuilder` and signed by `signer`.
    *
    * @param authenticator
-   * The `UserPassAuthenticator` which authenticates a given pair of a user
+   * The `AsyncAuthenticator` which authenticates a given pair of a user
    * and a password.
    * @param claimBuilder
    * Builds a claim set from a result of `authenticator`.
@@ -38,14 +37,15 @@ trait JwtDirectives {
    * @param executionContext
    * The execution context to run a `Future` returned from `authenticator`.
    */
-  def jwtAuthenticator[T](authenticator: Authenticator[T])
+  def jwtAuthenticator[T](authenticator: AsyncAuthenticator[T])
                          (implicit claimBuilder: JwtClaimBuilder.SubjectExtrator[T],
                           signer: JWTClaimsSet => Option[JWSObject],
-                          executionContext: ExecutionContext): Authenticator[JWSObject] = {
-    authenticator(_) flatMap { foo =>
-      claimBuilder(foo) flatMap {
+                          executionContext: ExecutionContext): AsyncAuthenticator[JWSObject] = {
+    authenticator(_) map {
+      case Some(t) => claimBuilder(t) flatMap {
         signer(_)
       }
+      case None => None
     }
   }
 
@@ -329,10 +329,7 @@ object JwtClaimVerifier {
   def verifyNotExpired: PrivilegeFunction = claims => {
     def isValid(validUntil: Date) = validUntil.toInstant.isAfter(Instant.now())
 
-    Option(claims.getExpirationTime) match {
-      case Some(validUntil) if isValid(validUntil) => Some(claims)
-      case _ => None
-    }
+    Option(claims.getExpirationTime).filter(isValid) map { _ => claims } orElse None
   }
 
   /** Implicitly converts a claim verifier into a [[JwtClaimVerifier]]. */
