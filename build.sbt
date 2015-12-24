@@ -7,12 +7,12 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-featur
 scalacOptions ++= Seq("-Yclosure-elim", "-Yinline", "-Yinline-warnings", "-Xfatal-warnings")
 
 libraryDependencies ++= {
-  val akkaStreamV = "1.0"
+  val akkaStreamV = "2.0.1"
 
   Seq(
     "com.typesafe.akka" %% "akka-http-core-experimental" % akkaStreamV,
     "com.typesafe.akka" %% "akka-http-experimental" % akkaStreamV,
-    "com.nimbusds" % "nimbus-jose-jwt" % "3.10"
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.11"
   )
 }
 

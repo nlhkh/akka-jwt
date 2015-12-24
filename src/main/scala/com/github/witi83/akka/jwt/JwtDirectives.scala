@@ -7,6 +7,7 @@ import akka.http.scaladsl.server.{AuthorizationFailedRejection, Directive1}
 import com.nimbusds.jose.crypto.{MACSigner, MACVerifier}
 import com.nimbusds.jose.{JWSAlgorithm, JWSHeader, JWSObject, Payload}
 import com.nimbusds.jwt.JWTClaimsSet
+import com.nimbusds.jwt.JWTClaimsSet.Builder
 import net.minidev.json.JSONObject
 
 import scala.concurrent.ExecutionContext
@@ -239,9 +240,7 @@ object JwtClaimBuilder {
    */
   def claimExpiration[T](duration: Duration): SubjectExtrator[T] = input => {
     val validUntil = new Date(Instant.now().plusSeconds(duration.toSeconds).toEpochMilli)
-    val claims = new JWTClaimsSet()
-    claims.setExpirationTime(validUntil)
-    Some(claims)
+    Some(new Builder().expirationTime(validUntil).build())
   }
 
   /**
@@ -251,9 +250,7 @@ object JwtClaimBuilder {
    * The issuer of a JWT.
    */
   def claimIssuer[T](issuer: String): SubjectExtrator[T] = input => {
-    val claims = new JWTClaimsSet()
-    claims.setIssuer(issuer)
-    Some(claims)
+    Some(new Builder().issuer(issuer).build())
   }
 
   /**
@@ -263,9 +260,7 @@ object JwtClaimBuilder {
    * A function which extracts the subject from an input.
    */
   def claimSubject[T](subject: T => String): SubjectExtrator[T] = input => {
-    val claims = new JWTClaimsSet()
-    claims.setSubject(subject(input))
-    Some(claims)
+    Some(new Builder().subject(subject(input)).build())
   }
 
   /**
