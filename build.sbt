@@ -1,6 +1,6 @@
 name := "akka-jwt"
 organization := "com.github.witi83"
-version := "0.0.2"
+version := "0.0.3"
 scalaVersion := "2.11.7"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature", "-target:jvm-1.8")
