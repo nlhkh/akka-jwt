@@ -7,7 +7,7 @@ Add the following dependency to your `build.sbt`,
 
 ```
 resolvers += "witi83 at bintray" at "http://dl.bintray.com/witi83/maven"
-libraryDependencies += "com.github.witi83" %% "akka-jwt" % "0.0.1"
+libraryDependencies += "com.github.witi83" %% "akka-jwt" % "0.0.3"
 ```
 
 Example
