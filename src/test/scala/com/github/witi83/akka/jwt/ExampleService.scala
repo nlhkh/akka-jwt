@@ -35,8 +35,7 @@ trait ExampleService {
     authenticateBasicAsync("secure site", jwtAuthenticator(authenticate)) { user =>
       complete(user.serialize())
     }
-  } ~
-  path("verify") {
+  } ~ path("verify") {
     authorizeToken(verifyNotExpired) { name =>
       complete(s"You know nothing, ${name.getSubject}!")
     }
@@ -44,6 +43,9 @@ trait ExampleService {
 }
 
 object Main extends ExampleService {
+
+  import scala.concurrent.ExecutionContext.Implicits.global
+
   protected implicit val system = ActorSystem()
   protected implicit val mat = ActorMaterializer()
 
@@ -52,7 +54,7 @@ object Main extends ExampleService {
 
     StdIn.readLine()
 
-    system.shutdown()
+    system.terminate() foreach println
   }
 
 }
