@@ -1,15 +1,15 @@
 name := "akka-jwt"
 organization := "com.github.witi83"
 version := "0.0.4"
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature", "-target:jvm-1.8")
 scalacOptions ++= Seq("-Yinline-warnings", "-Xfatal-warnings", "-Ywarn-dead-code", "-Ywarn-value-discard")
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.akka" %% "akka-http-experimental" % "2.4.2-RC1",
-    "com.nimbusds" % "nimbus-jose-jwt" % "4.11.2"
+    "com.typesafe.akka" %% "akka-http-experimental" % "2.4.4",
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.16.1"
   )
 }
 
