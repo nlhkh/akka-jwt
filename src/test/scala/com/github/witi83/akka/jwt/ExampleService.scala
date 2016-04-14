@@ -4,7 +4,6 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.nimbusds.jose.JWSAlgorithm
-import com.nimbusds.jwt.JWTClaimsSet
 
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
@@ -19,17 +18,13 @@ trait ExampleService {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  def authenticate: AsyncAuthenticator[String] = barr => Future.successful {
-    Some("John Snow")
-  }
+  def authenticate: AsyncAuthenticator[String] = barr => Future.successful(Some("John Snow"))
 
   val signature = JwtSignature(JWSAlgorithm.HS256, "asdfas fjhasdf haskdflhasd fhalskdfh askldfjh lsakdjhsdhklflaskhf")
 
   import signature._
 
-  implicit val claimBuilder: String => Option[JWTClaimsSet] = claimSubject[String](identity) &&
-    claimIssuer("akka-jwt") &&
-    claimExpiration(1.minutes)
+  implicit val claimBuilder = claimSubject[String](identity) && claimIssuer("akka-jwt") && claimExpiration(1.minutes)
 
   val route = path("authenticate") {
     authenticateBasicAsync("secure site", jwtAuthenticator(authenticate)) { user =>
