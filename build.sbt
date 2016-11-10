@@ -3,13 +3,23 @@ organization := "com.github.witi83"
 version := "1.1.0"
 scalaVersion := "2.11.8"
 
-scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature", "-target:jvm-1.8")
-scalacOptions ++= Seq("-Yinline-warnings", "-Xfatal-warnings", "-Ywarn-dead-code", "-Ywarn-value-discard")
+scalacOptions := Seq("-deprecation",
+                     "-encoding", "utf8",
+                     "-feature",
+                     "-target:jvm-1.8",
+                     "-unchecked",
+                     "-Yinline-warnings",
+                     "-Yno-adapted-args",
+                     "-Ywarn-dead-code",
+                     "-Ywarn-numeric-widen",
+                     "-Ywarn-value-discard",
+                     "-Xfatal-warnings",
+                     "-Xfuture")
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.akka" %% "akka-http-experimental" % "2.4.9",
-    "com.nimbusds" % "nimbus-jose-jwt" % "4.26"
+    "com.typesafe.akka" %% "akka-http-experimental" % "2.4.11",
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.27"
   )
 }
 
