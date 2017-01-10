@@ -1,6 +1,6 @@
 name := "akka-jwt"
 organization := "com.github.witi83"
-version := "1.2.0"
+version := "1.3.0"
 scalaVersion := "2.11.8"
 
 scalacOptions := Seq("-deprecation",
@@ -18,8 +18,8 @@ scalacOptions := Seq("-deprecation",
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.akka" %% "akka-http-experimental" % "2.4.11",
-    "com.nimbusds" % "nimbus-jose-jwt" % "4.27"
+    "com.typesafe.akka" %% "akka-http" % "10.0.1",
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.33"
   )
 }
 
