@@ -18,8 +18,8 @@ scalacOptions := Seq("-deprecation",
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.akka" %% "akka-http" % "10.0.1",
-    "com.nimbusds" % "nimbus-jose-jwt" % "4.33"
+    "com.typesafe.akka" %% "akka-http" % "10.0.5",
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.36"
   )
 }
 
