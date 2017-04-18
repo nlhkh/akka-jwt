@@ -1,6 +1,6 @@
 name := "akka-jwt"
 organization := "com.github.witi83"
-version := "1.3.0"
+version := "1.4.0"
 
 scalacOptions := Seq("-deprecation",
                      "-encoding", "utf8",
@@ -21,27 +21,16 @@ libraryDependencies ++= {
   )
 }
 
-publishMavenStyle := true
-
 publishArtifact in Test := false
 
 licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT"))
 
 homepage := Some(url("https://github.com/witi83/akka-jwt"))
 
-pomExtra := <scm>
-  <url>https://github.com/witi83/akka-jwt.git</url>
-  <connection>scm:git:https://github.com/witi83/akka-jwt.git</connection>
-</scm>
-  <developers>
-    <developer>
-      <id>kikuomax</id>
-      <name>Kikuo Emoto</name>
-      <url>https://github.com/kikuomax</url>
-    </developer>
-    <developer>
-      <id>witi83</id>
-      <name>Witold Czaplewski</name>
-      <url>https://github.com/witi83</url>
-    </developer>
-  </developers>
+scmInfo := Some(ScmInfo(url("https://github.com/witi83/akka-jwt"), "git@github.com:witi83/akka-jwt.git"))
+
+developers += Developer("witi83", "Witold Czaplewski", "witi83@web.de", url("https://github.com/witi83"))
+
+pomIncludeRepository := (_ => false)
+
+bintrayPackage := "akka-jwt"
