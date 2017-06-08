@@ -9,8 +9,8 @@
 Add the following dependency to your `build.sbt`,
 
 ```
-resolvers += "witi83 at bintray" at "http://dl.bintray.com/witi83/maven"
-libraryDependencies += "com.github.witi83" %% "akka-jwt" % "1.4.0"
+resolvers += "witi83 at bintray" at "https://dl.bintray.com/witi83/maven"
+libraryDependencies += "com.github.witi83" %% "akka-jwt" % "1.5.0"
 ```
 
 ## Example
@@ -19,8 +19,8 @@ Please refer to [ExampleService](src/test/scala/com/github/witi83/akka/jwt/Examp
 
 ## JWT Library
 
-[Nimbus JOSE + JWT](http://connect2id.com/products/nimbus-jose-jwt) is used for generating and verifying JWTs.
+[Nimbus JOSE + JWT](https://connect2id.com/products/nimbus-jose-jwt) is used for generating and verifying JWTs.
 
 ## License
 
-[MIT License](http://opensource.org/licenses/MIT)
+[MIT License](https://opensource.org/licenses/MIT)
