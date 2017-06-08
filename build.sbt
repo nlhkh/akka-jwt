@@ -4,8 +4,7 @@ version := "1.4.0"
 
 scalacOptions := Seq(
   "-deprecation",
-  "-encoding",
-  "utf8",
+  "-encoding", "utf8",
   "-feature",
   "-target:jvm-1.8",
   "-unchecked",
