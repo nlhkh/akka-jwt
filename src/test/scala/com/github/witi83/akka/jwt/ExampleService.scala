@@ -5,6 +5,7 @@ import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.nimbusds.jose.JWSAlgorithm
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration.DurationInt
 import scala.io.StdIn
@@ -16,11 +17,9 @@ trait ExampleService {
   import JwtDirectives._
   import akka.http.scaladsl.server.Directives._
 
-  import scala.concurrent.ExecutionContext.Implicits.global
-
   def authenticate: AsyncAuthenticator[String] = barr => Future.successful(Some("John Snow"))
 
-  val signature = JwtSignature(JWSAlgorithm.HS256, "asdfas fjhasdf haskdflhasd fhalskdfh askldfjh lsakdjhsdhklflaskhf")
+  val signature = JwtSignature(JWSAlgorithm.HS512, "asdfas fjhasdf haskdflhasd fhalskdfh askldfjh lsakdjhsdhklflaskhf")
 
   import signature._
 
@@ -38,9 +37,6 @@ trait ExampleService {
 }
 
 object Main extends ExampleService {
-
-  import scala.concurrent.ExecutionContext.Implicits.global
-
   protected implicit val system = ActorSystem()
   protected implicit val mat = ActorMaterializer()
 
